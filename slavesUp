@@ -20,14 +20,14 @@ if [ "$DEVICE" == "" ]
 then
   DEVICE=`ip addr show up | perl -n -e 'print "$1\n" if /^[0-9]+: ([^:]+):/ && !("$1" eq "lo")' | head -n 1`
   >&2 echo "WARNING: no device configured, using $DEVICE"
-  BASEPORT=10000
 fi
 
-LOCALIP=`ip addr show dev $DEVICE | perl -n -e 'print $1 if /inet ([0-9\.]+)\/[0-9]+ brd/'`
+LOCALIP=`ip addr show dev $DEVICE | perl -n -e 'print "$1\n" if /inet ([0-9\.]+)\/[0-9]+ brd/' | head -n 1`
 CPUUNITS=`grep '^model name' /proc/cpuinfo | wc -l`
 for i in `seq 1 $CPUUNITS`
 do
-   echo "Starting up slave node... "
-   $SLAVEEXE Slave $LOCALIP $(($BASEPORT + $i)) 2>&1 &
+   p=$(($BASEPORT + $i))
+   echo "Starting up slave node on $LOCALIP:$p ... "
+   $SLAVEEXE Slave $LOCALIP $p 2>&1 &
 done
 

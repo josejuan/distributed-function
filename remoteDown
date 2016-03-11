@@ -12,3 +12,4 @@ fi
 scp ./slavesDown $NODE:/tmp/slavesDown.$USER
 ssh $NODE "/tmp/slavesDown.$USER $BNAME.$USER"
 
+

@@ -14,4 +14,9 @@ BNAME=`basename $SLAVEEXE`
 
 scp ./slavesUp $NODE:/tmp/slavesUp.$USER
 scp $SLAVEEXE $NODE:/tmp/$BNAME.$USER
-ssh $NODE "/tmp/slavesUp.$USER /tmp/$BNAME.$USER $BASEPORT"
+ssh -f $NODE "/tmp/slavesUp.$USER /tmp/$BNAME.$USER $BASEPORT"
+
+sleep 3 # only for non overlapped stdout
+echo "done"
+
+
