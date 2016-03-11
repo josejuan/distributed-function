@@ -2,6 +2,10 @@
 
 Like a distributed `map` with zero configuration.
 
+The type is (more or less...)
+
+    distributedMap :: Config → (Problem → Solution) → [Problem] → [Solution]
+
 # abstract
 
 The idea is set up slave daemons on each machine over the network. After it, use as needed.
@@ -50,10 +54,14 @@ or you can use `slavesUp` to run one node for each processor unit
 
     ./slavesDown slow-primes-exe
 
-## running slave nodes on a fresh machine
+## running / stopping nodes on a remote fresh machine
+
+(no remote previous configuration is needed and only temporary files will be created)
+
+### running slave nodes on a fresh machine
 
     ./remoteUp remote-machine ./binaries/slow-primes-exe
 
-## stopping remove slave nodes
+### stopping remove slave nodes
 
     ./remoteDown remote-machine slow-primes-exe
