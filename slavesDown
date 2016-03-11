@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SLAVEEXE=$1
+
+if [ "$SLAVEEXE" == "" ]
+then
+  >&2 echo "usage: $0 <slave-exe>"
+  exit 1
+fi
+
+pkill -f "$SLAVEEXE Slave "
+

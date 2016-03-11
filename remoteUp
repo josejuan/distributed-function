@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NODE=$1
+SLAVEEXE=$2
+BASEPORT=$3
+
+if [ "$SLAVEEXE" == "" ] || [ "$NODE" == "" ]
+then
+  >&2 echo "usage: $0 <remote-host> <slave-exe> [ <listing-port> ]"
+  exit 1
+fi
+
+BNAME=`basename $SLAVEEXE`
+
+scp ./slavesUp $NODE:/tmp/slavesUp.$USER
+scp $SLAVEEXE $NODE:/tmp/$BNAME.$USER
+ssh $NODE "/tmp/slavesUp.$USER /tmp/$BNAME.$USER $BASEPORT"

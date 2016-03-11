@@ -1,0 +1,14 @@
+#!/bin/bash
+
+NODE=$1
+BNAME=$2
+
+if [ "$BNAME" == "" ] || [ "$NODE" == "" ]
+then
+  >&2 echo "usage: $0 <remote-host> <slave-exe>"
+  exit 1
+fi
+
+scp ./slavesDown $NODE:/tmp/slavesDown.$USER
+ssh $NODE "/tmp/slavesDown.$USER $BNAME.$USER"
+
