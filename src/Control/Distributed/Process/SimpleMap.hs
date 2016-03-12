@@ -84,5 +84,3 @@ distributedMap mode host port rTable rComputation instances = do
                                               master ch backend (i:ps) (n - 1) xs
 
 data Ret a = Ret a | End
-
-

@@ -1,4 +1,5 @@
 #!/bin/bash
+cd `dirname $0`
 
 NODE=$1
 SLAVEEXE=$2

@@ -44,7 +44,7 @@ The idea is set up slave daemons on each machine over the network. After it, use
 
 The easy way is simply run n-times
 
-    ./slow-primes-exe <real local ip> <any port>
+    ./slow-primes-exe Slave <real local ip> <any port>
 
 or you can use `slavesUp` to run one node for each processor unit
 

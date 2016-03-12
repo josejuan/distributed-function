@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BPORT=15000
+
+# nmap -p 22 192.168.0.0/24
+for i in 96 97 99
+do
+  ../scripts/remoteUp 192.168.0.$i ../binaries/slow-primes-exe $BPORT
+done
+
+../binaries/slow-primes-exe Master 192.168.0.96 $BPORT `cat primes_10000000.txt`
+
+for i in 96 97 99
+do
+  ../scripts/remoteDown 192.168.0.$i slow-primes-exe
+done
